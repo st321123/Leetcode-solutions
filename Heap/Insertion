@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+
+class Heap{
+
+    public:
+    int *arr;
+    int size ;
+    int capacity;
+    
+    Heap(int capacity)
+    {
+        this->arr = new int[capacity];
+        this->capacity = capacity;
+
+        this->size = 0;
+    }
+
+
+    //Inserting in the heap
+    void insert(int val)
+    {
+       
+        if(size == capacity)
+        cout<<"Overflow ";
+
+        size++;
+
+        int idx = size;
+
+        arr[idx] = val;
+        
+
+        while(idx >1)
+        {
+            if(arr[idx] >arr[idx/2])
+            {
+                swap(arr[idx], arr[idx/2]);
+                idx = idx/2;
+            }
+            else
+            break;
+        }
+        
+    }
+
+    // Printing the heap
+    void print()
+    {
+        int idx = 1;
+        while(idx <=size)
+        {
+            cout<<arr[idx]<<" ";
+            idx++;
+        }
+    }
+};
+
+int main()
+{
+    int n;
+    cout<<"Enter the size "<<endl;
+    cin>>n;
+    Heap h(n);
+
+    int i =1;
+    int val = 0;
+    while(i<= n)
+    {
+        cout<<"Enter the value "<<endl;
+        cin>>val;
+        h.insert(val);
+        i++;
+    }
+    h.print();
+   
+}
